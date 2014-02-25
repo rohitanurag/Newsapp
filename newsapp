@@ -1,0 +1,296 @@
+
+   <title>AroundTheWorld</title>
+   <script src="//www.google.com/jsapi?key=ABQIAAAA5El50zA4PeDTEMlv-sXFfRSsTL4WIgxhMZ0ZK_kHjwHeQuOD4xTdBhxbkZWuzyYTVeclkwYHpb17ZQ"></script>
+   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+   <script src="https://www.google.com/jsapi"></script>
+   <script type="text/javascript">
+      var ge;
+	  var showstring;
+	  alert("Use No Proxy and wait for about 3 sec for news results");
+	  var tnews = new Array(8);
+	var point = new Array(8);
+	  var substring;
+      google.load("earth", "1");
+		google.load('search', '1');
+      function init() {
+         google.earth.createInstance('map3d', initCB, failureCB);
+		 //google.setOnLoadCallback(on);
+      }
+	  var newsSearch;
+setInterval(get_address,3000);
+setInterval(on,5000);
+//setInterval(searchComplete,300);
+        function searchComplete() {
+
+        // Check that we got results
+       // document.getElementById('content').innerHTML = '';
+        if (newsSearch.results && newsSearch.results.length > 0) {
+          for (var i = 0; i < newsSearch.results.length; i++) {
+
+            // Create HTML elements for search results
+            //var p = document.createElement('p');
+            //var a = document.createElement('a');
+			//var c = document.createElement('c');
+           // a.href=newsSearch.results[i].unescapedUrl;
+            //a.innerHTML = newsSearch.results[i].title;
+			console.log(newsSearch.results[i].title);
+            // Append search results to the HTML nodes
+			var In = ge.createIcon('');
+			In.setHref('http://themediabarista.com/wp-content/uploads/2013/07/letter_I.png');
+			var inews = ge.createStyle(''); //create a new style
+			inews.getIconStyle().setIcon(In);
+			inews.getIconStyle().setScale(5.0); //apply the icon to the style
+			//apply the style to the placemark
+			var arr=newsSearch.results;
+			var i=0;
+			var url="" ;
+			var news="";
+			//var jsonUrl
+			while(arr.length!=0 && i<arr.length)
+			{
+				url=newsSearch.results[i].unescapedUrl;
+				news=newsSearch.results[i].title;
+				var camera1 = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+				
+				point[i].setLatitude(camera1.getLatitude());
+				point[i].setLongitude(camera1.getLongitude());
+				tnews[i].setGeometry(point[i]);
+				tnews[i].setStyleSelector(inews);
+				ge.getFeatures().appendChild(tnews[i]);
+				i++;
+			}
+			google.earth.addEventListener(tnews[0], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[0]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[0].unescapedUrl+'" >'+newsSearch.results[0].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[1], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[1], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[1]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[1].unescapedUrl+'" >'+newsSearch.results[1].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[1], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[2], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[2]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[2].unescapedUrl+'" >'+newsSearch.results[2].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[2], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[3], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[3]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[3].unescapedUrl+'" >'+newsSearch.results[3].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[3], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[4], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[4]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[4].unescapedUrl+'" >'+newsSearch.results[4].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[4], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[5], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[5]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[5].unescapedUrl+'" >'+newsSearch.results[5].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[5], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[6], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[6]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[6].unescapedUrl+'" >'+newsSearch.results[6].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[6], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			google.earth.addEventListener(tnews[7], 'mouseover', function(event) {
+			// Prevent the default balloon from popping up.
+				event.preventDefault();
+
+				var balloon = ge.createHtmlStringBalloon('');
+				balloon.setFeature(tnews[7]); // optional
+				balloon.setContentString(
+				' <a href="'+newsSearch.results[7].unescapedUrl+'" >'+newsSearch.results[7].title+'</a>');
+
+				ge.setBalloon(balloon);
+				google.earth.addEventListener(tnews[7], 'click', function(event) {
+				ge.setBalloon(null);});
+});
+			//p.appendChild(a);
+			//document.body.appendChild(p);
+          }
+        }
+      }
+	
+      function initCB(instance) {
+
+         ge = instance;
+         ge.getWindow().setVisibility(true);
+		 ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
+         ge.getNavigationControl().setVisibility(ge.VISIBILITY_HIDE);
+		 var i=0;
+		 for (i = 0; i < 8; i++)
+		{
+			tnews[i] = ge.createPlacemark('');
+			point[i] = ge.createPoint('');
+
+		}
+         
+         
+
+        
+
+         
+      }
+      function failureCB(errorCode) {
+      }
+	  var json_data;
+		function get_address()
+		{
+		var formatted;
+		 var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+		var jsonUrl="http://maps.googleapis.com/maps/api/geocode/json?latlng="+camera.getLatitude().toFixed(5)+","+camera.getLongitude().toFixed(5)+"&sensor=true";
+		
+		console.log(jsonUrl);
+		$.getJSON(jsonUrl,function(json){
+		 json_data = json;   
+		  //console.log(json); 
+		  if(json_data.status!="ZERO_RESULTS"){
+		formatted = json_data.results[0].formatted_address;
+		       //console.log(formatted);
+			   
+			   var address_array=formatted.split(',');
+			   //document.getElementById('header').innerHTML = address_array[address_array.length-1];
+			   //mark(place);
+			   var i;
+			   var camera1 = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			   var alt = camera.getAltitude();
+			   var zoom=1;
+			   if(alt>1300000.00)
+			   {
+			   zoom=1;
+			   }
+			   else
+			   {
+			   zoom=2;
+			   }
+			    substring=address_array[address_array.length-zoom];
+			   for(i=address_array[address_array.length-zoom].length-1;i>0;i--){
+				if (address_array[address_array.length-zoom].charAt(i)>='a' && address_array[address_array.length-zoom].charAt(i)<='z'){
+				substring=address_array[address_array.length-zoom].substring(0,i+1);
+				break;
+				}
+				}
+				for(i=0;i<substring.length;i++){
+				if (address_array[address_array.length-zoom].charAt(i)>='A' && address_array[address_array.length-zoom].charAt(i)<='Z'){
+				substring=substring.substring(i-1,substring.length);
+				break;
+				}
+				}
+				document.getElementById('header').innerHTML = substring;
+				showstring=substring;
+				
+			   }
+});
+		
+		 
+		
+}
+function on() {
+		var loc="mumbai";var top="";
+        // Create a News Search instance.
+        newsSearch = new google.search.NewsSearch();
+		newsSearch.setResultSetSize(8);
+		//newsSearch.setResultOrder(google.search.Search.ORDER_BY_DATE);
+		
+		//newsSearch.setRestriction(google.search.Search.RESTRICT_EXTENDED_ARGS,{ "topic" : "e" ,});
+  
+        // Set searchComplete as the callback function when a search is 
+        // complete.  The newsSearch object will have results in it.
+        newsSearch.setSearchCompleteCallback(this, searchComplete, null);
+
+        // Specify search quer(ies)
+		console.log(showstring);
+        newsSearch.execute(showstring);
+
+        // Include the required Google branding
+        google.search.Search.getBranding('branding');
+		newsSearch.results.location;
+		//console.log(newsSearch.results[0].title);
+		
+		return newsSearch;
+      }
+//function mark(place){
+	
+	//}
+      google.setOnLoadCallback(init);
+	  function call_news(){
+	  //var test=on();
+	  google.setOnLoadCallback(on);
+	  }
+	  
+	  
+	  //call_news();
+	  
+   </script>
+
+</head>
+<body>
+
+   <div id="map3d" style="height:screen.height; width :screen.width"></div>
+<h1 id="header"></h1>
+</div>
+	
+</body>
+</html>
+
+<!-- Hosting24 Analytics Code -->
+<script type="text/javascript" src="http://stats.hosting24.com/count.php"></script>
+<!-- End Of Analytics Code -->
